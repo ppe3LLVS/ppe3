@@ -1,3 +1,9 @@
+<?php
+    include('assets/include/bdd.inc.php');
+    include('assets/classes/entites/classe_niveau.php');
+
+    $oniveau = new Niveau(0,0);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -250,12 +256,12 @@
                             <h2 class="section-heading">S'inscrire</h2>
                             <h3 class="section-subheading secondary-font">Pour les nouveaux cavaliers.</h3>
                             <br>
-                            <form method="POST" action="assets/trait-formulaire/trait_user-inscription.php">
+                            <form method="POST" action="assets/trait_formulaire/trait_user-inscription.php">
                                 <div>
                                     <label>
                                         <b> Nom : </b>
                                     </label>
-                                    <input type="text" name="cavalier[]" value="Barbiéro" required="required">
+                                    <input type="text" name="cavalier[]" value="Gouygou-Barbiéro" required="required">
                                 </div>
                                 <br>
                                 <div>
@@ -281,25 +287,25 @@
                                             <label>
                                                 <b> Numéro : </b>
                                             </label>
-                                            <input type="text" name="cavalier[]" value="18" required="required">
+                                            <input type="text" name="adresse[]" value="18" required="required">
                                         </li>
                                         <li>
                                             <label>
                                                 <b> Lieu : </b>
                                             </label>
-                                            <input type="text" name="cavalier[]" value="Rue du Docteur Laubie" required="required">
+                                            <input type="text" name="adresse[]" value="Rue du Docteur Laubie" required="required">
                                         </li>
                                         <li>
                                             <label>
                                                 <b> Code postal : </b>
                                             </label>
-                                            <input type="text" name="cavalier[]" value="19270" required="required">
+                                            <input type="text" name="adresse[]" value="19270" required="required">
                                         </li>
                                         <li>
                                             <label>
                                                 <b> Ville : </b>
                                             </label>
-                                            <input type="text" name="cavalier[]" value="Donzenac" required="required">
+                                            <input type="text" name="adresse[]" value="Donzenac" required="required">
                                         </li>
                                     </ul>
                                 </div>
@@ -314,21 +320,14 @@
                                     <label>
                                         <b> Adresse mail : </b>
                                     </label>
-                                    <input type="text" name="cavalier[]" value="barbierovalentin26@gmail.com" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Pseudonyme : </b>
-                                    </label>
-                                    <input type="text" name="cavalier[]" value="Valoche" required="required">
+                                    <input type="text" name="cavalier[]" value="valentingbarbiero@clos-langlade.fr" required="required">
                                 </div>
                                 <br>
                                 <div>
                                     <label> <b>
                                             Mot de passe : </b>
                                     </label>
-                                    <input type="password" name="cavalier[]" value="Valoche:26,7;2001" required="required">
+                                    <input type="password" name="cavalier[]" value="La_Valocherie" required="required">
                                 </div>
                                 <br>
                                 <div>
@@ -337,11 +336,7 @@
                                     </label>
                                     <select name="niveau">
 <?php
-    include('assets/include/bdd.inc.php');
-    include('assets/classes/Entites/classe_niveau.php');
-
-    $niveau = new Niveau(0,0);
-    $niveau->liste_niveaux($con);
+    $oniveau->listeNiveaux($con);
 ?>
                                     </select>
                                 </div>

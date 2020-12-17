@@ -1,3 +1,11 @@
+<?php
+    include 'assets/include/bdd.inc.php';
+    include 'assets/classes/entites/classe_adresse.php';
+    include 'assets/classes/entites/classe_login.php';
+    include 'assets/classes/entites/classe_cavalier.php';
+    include 'assets/classes/entites/classe_niveau.php';
+    include 'assets/classes/associations/classe_obtention.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -251,29 +259,42 @@
                             <h3 class="section-subheading secondary-font">Des associations cavalier-niveau</h3>
                             <br>
                             <table border="3" align="vertical-center">
-                                <tr>
-                                    <th colspan="3"> Cavalier </th>
-                                    <th colspan="2"> Niveau </th>
-                                    <th rowspan="2"> Date d'obtention </th>
-                                </tr>
-                                <tr>
-                                    <th> Identifiant </th>
-                                    <th> Nom </th>
-                                    <th> Prénom </th>
-                                    <th> Identifiant </th>
-                                    <th> Libellé </th>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"> Cavalier </th>
+                                        <th colspan="2"> Niveau </th>
+                                        <th rowspan="2"> Date d'obtention </th>
+                                    </tr>
+                                    <tr>
+                                        <th> Identifiant </th>
+                                        <th> Nom / Prénom </th>
+                                        <th> Identifiant </th>
+                                        <th> Libellé </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 <?php
-    include('assets/include/bdd.inc.php');
-    include('assets/classes/entites/classe_cavalier.php');
-    include('assets/classes/entites/classe_niveau.php');
-    include('assets/classes/associations/classe_obtention.php');
-
-    $cavalier = new Cavalier(0,0,0,0,0,0,0,0,0,0,0,0);
-    $niveau = new Niveau(0,0);
-    $obtention = new Obtention($cavalier,$niveau,0);
-    $obtention->table_cavin($con);
+    $oadresse = new Adresse(0,0,0,0,0);
+    $ologin = new Login(0,0);
+    $ocavalier = new Cavalier(0,0,0,0,$oadresse,0,0,0,$ologin);
+    $oniveau = new Niveau(0,0);
+    $obtention = new Obtention($ocavalier,$oniveau,0);
+    $obtention->tableObtention($con);
 ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th> Identifiant </th>
+                                        <th> Nom / Prénom</th>
+                                        <th> Identifiant </th>
+                                        <th> Libellé </th>
+                                        <th rowspan="2"> Date d'obtention </th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2"> Cavalier </th>
+                                        <th colspan="2"> Niveau </th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

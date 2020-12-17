@@ -1,5 +1,24 @@
+<?php
+	include 'assets/include/bdd.inc.php';
+    include 'assets/classes/entites/classe_adresse.php';
+    include 'assets/classes/entites/classe_login.php';
+	include 'assets/classes/entites/classe_cavalier.php';
+	include 'assets/classes/entites/classe_niveau.php';
+	include 'assets/classes/associations/classe_obtention.php';
+
+    session_start();
+
+	$oadresse = new Adresse('NI','NI','NI','NI','NI');
+    $ologin = new Login('NI','NI');
+	$ocavalier = new Cavalier($_GET['identifiant'],$_GET['nom'],$_GET['prenom'],'NI',$oadresse,'NI','NI','NI',$ologin);
+
+	$oniveau = new Niveau('NI','NI');
+
+	$obtention = new Obtention($ocavalier,$oniveau,'NI');
+    $obtention->coorDonnees($con);
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -27,6 +46,7 @@
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/pe-icons.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top" class="index">
@@ -58,14 +78,13 @@
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                             </li>
                         </ul>
-
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="user-inscription.html">S'inscrire</a>
+                                    <a href="user-inscription.php">S'inscrire</a>
                                 </li>
                                 <li>
-                                    <a href="user-connexion.html">Se connecter</a>
+                                    Se connecter
                                 </li>
                             </ul>
                         </div>
@@ -246,54 +265,84 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading">Récapitulatif</h2>
-                            <h3 class="section-subheading secondary-font">Des cavaliers inscrits</h3>
+                            <h2 class="section-heading">Vérifier </h2>
+                            <h3 class="section-subheading secondary-font">Votre compte.</h3>
                             <br>
-                            <table id="cavaliers" border="3">
-                                <thead>
+                            <form method="POST" action="assets/trait_formulaire/trait_compte.php">
+                            	<table border="3">
+                            		<tr>
+                            			<th colspan="2"> Vos informations </th>
+                            		</tr>
                                     <tr>
                                         <th> Identifiant </th>
-                                        <th> Nom </th>
-                                        <th> Prénom </th>
-                                        <th> Date de naissance </th>
-                                        <th> Adresse géographique</th>
-                                        <th> Numéro de téléphone </th>
-                                        <th> Courriel </th>
-                                        <th> Mot de passe </th>
+                                        <td><?php echo $obtention->getCavalier()->getIdentifiant() ?></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-<?php
-    include 'assets/include/bdd.inc.php';
-    include 'assets/classes/entites/classe_adresse.php';
-    include 'assets/classes/entites/classe_login.php';
-    include 'assets/classes/entites/classe_cavalier.php';
-
-    $oadresse = new Adresse('NI','NI','NI','NI','NI');
-    $ologin = new Login('NI','NI');
-    $ocavalier = new Cavalier('NI','NI','NI','NI',$oadresse,'NI','NI','NI',$ologin);
-    $ocavalier->tableCavalier($con);
-?>
-                                </tbody>
-                                <tfoot>
+                            		<tr>
+                            			<th> Nom </th>
+                            			<td>
+                            				<input type="text" name="cavalier[]" value="<?php echo $obtention->getCavalier()->getNom() ?>" required="required" size="30" size="30">
+                            			</td>
+                            		</tr>
+                            		<tr> 
+                            			<th> Prénom </th>
+                            			<td>
+                                    		<input type="text" name="cavalier[]" value="<?php echo $obtention->getCavalier()->getPrenom() ?>" required="required" size="30">
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Date de naissance </th>
+                            			<td>
+                                    		<?php echo $obtention->getCavalier()->getDDN() ?>
+                                    	</td>
+                                	</tr>
+                                	<tr> 
+                            			<th> Adresse géographique </th>
+                            			<td>
+                            				<div>
+                            					<input type="text" name="adresse[]" value="<?php echo $obtention->getCavalier()->getAdresse()->getNumero() ?>" required="required" size="30" maxlength="3">
+                                                <br>
+                            					<input type="text" name="adresse[]" value="<?php echo $obtention->getCavalier()->getAdresse()->getLieu() ?>" required="required" size="30">
+                                                <br>
+                                    			<input type="text" name="adresse[]" value="<?php echo $obtention->getCavalier()->getAdresse()->getCP() ?>" required="required" size="30" maxlength="5">
+                                                <br>
+                                    			<input type="text" name="adresse[]" value="<?php echo $obtention->getCavalier()->getAdresse()->getVille() ?>" required="required" size="30">
+                                    		</div>
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Numéro de téléphone </th>
+                            			<td>
+                                    		<input type="text" name="cavalier[]" value="<?php echo $obtention->getCavalier()->getNumtel() ?>" required="required" size="30" size="15">
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Adresse électronique </th>
+                            			<td>
+                                    		<input type="text" name="cavalier[]" value="<?php echo $obtention->getCavalier()->getMail() ?>" required="required" size="30">
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Mot de passe </th>
+                            			<td>
+                                    		<input type="text" name="cavalier[]" value="<?php echo $obtention->getCavalier()->getMDP() ?>" required="required" size="30">
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Niveaux validés <br> Date de validation</th>
+                            			<td>
+                                            <ol>
+                                                <?php $obtention->niveauxValides($con) ?>
+                                            </ol>
+                                    	</td>
+                                    </tr>
                                     <tr>
-                                        <th> Identifiant </th>
-                                        <th> Nom </th>
-                                        <th> Prénom </th>
-                                        <th> Date de naissance </th>
-                                        <th> Adresse géographique</th>
-                                        <th> Numéro de téléphone </th>
-                                        <th> Courriel </th>
-                                        <th> Mot de passe </th>
+                                    	<td colspan="2">
+	                                    	<input type="reset" value="EFFACER">
+	                                    	<input type="submit" value="VALIDER">
+	                                    </td>
                                     </tr>
-                                </tfoot>
-                            </table>
-                            <script>
-                                $(document).ready(function() {
-                                    $('#cavaliers').DataTable();
-                                });
-                            </script>
-                            </script>
+                            	</table>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -27,6 +27,7 @@
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/pe-icons.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top" class="index">
@@ -62,7 +63,7 @@
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="user-inscription.html">S'inscrire</a>
+                                    <a href="user-inscription.php">S'inscrire</a>
                                 </li>
                                 <li>
                                     <a href="user-connexion.html">Se connecter</a>
@@ -246,54 +247,43 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading">Récapitulatif</h2>
-                            <h3 class="section-subheading secondary-font">Des cavaliers inscrits</h3>
+                            <h2 class="section-heading">Charger </h2>
+                            <h3 class="section-subheading secondary-font">Un nouveau mot de passe </h3>
                             <br>
-                            <table id="cavaliers" border="3">
-                                <thead>
-                                    <tr>
-                                        <th> Identifiant </th>
-                                        <th> Nom </th>
-                                        <th> Prénom </th>
-                                        <th> Date de naissance </th>
-                                        <th> Adresse géographique</th>
-                                        <th> Numéro de téléphone </th>
-                                        <th> Courriel </th>
-                                        <th> Mot de passe </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-<?php
-    include 'assets/include/bdd.inc.php';
-    include 'assets/classes/entites/classe_adresse.php';
-    include 'assets/classes/entites/classe_login.php';
-    include 'assets/classes/entites/classe_cavalier.php';
-
-    $oadresse = new Adresse('NI','NI','NI','NI','NI');
-    $ologin = new Login('NI','NI');
-    $ocavalier = new Cavalier('NI','NI','NI','NI',$oadresse,'NI','NI','NI',$ologin);
-    $ocavalier->tableCavalier($con);
-?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th> Identifiant </th>
-                                        <th> Nom </th>
-                                        <th> Prénom </th>
-                                        <th> Date de naissance </th>
-                                        <th> Adresse géographique</th>
-                                        <th> Numéro de téléphone </th>
-                                        <th> Courriel </th>
-                                        <th> Mot de passe </th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <script>
-                                $(document).ready(function() {
-                                    $('#cavaliers').DataTable();
-                                });
-                            </script>
-                            </script>
+                            <form method="POST" action="assets/trait_formulaire/trait_nouveau_mdp.php">
+                            	<div>
+                            		<label>
+                            			<b> Votre nom : </b>
+                            		</label>
+                            		<input type="text" name="cavalier[]">
+                            	</div>
+                            	<br>
+                            	<div>
+                            		<label>
+                            			<b> Votre prénom : </b>
+                            		</label>
+                            		<input type="text" name="cavalier[]">
+                            	</div>
+                            	<br>
+                            	<div>
+                            		<label>
+                            			<b> Votre adresse électronique : </b>
+                            		</label>
+                            		<input type="text" name="cavalier[]" size="30" value="<?php echo $_GET['courriel'] ?>">
+                            	</div>
+                            	<br>
+                            	<div>
+                            		<label>
+                            			<b> Votre nouveau mot de passe : </b>
+                            		</label>
+                            		<input type="password" name="cavalier[]">
+                            	</div>
+                            	<br>
+                            	<div>
+                            		<input type="reset" value="EFFACER">
+                            		<input type="submit" value="VALIDER">
+                            	</div>
+                            </form>
                         </div>
                     </div>
                 </div>

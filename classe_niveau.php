@@ -1,36 +1,49 @@
 <?php
 	class Niveau
 	{
-		private $_id;
+		private $_identifiant;
 		private $_libelle;
 
-		function __construct($id,$libelle)
+		function __construct($identifiant,$libelle)
 		{
-			$this->_id = $id;
+			$this->_identifiant = $identifiant;
 			$this->_libelle = $libelle;
 		}
 
-		public function get_id()
+		public function setAll($identifiant,$libelle)
 		{
-			return $this->_id;
+			$this->_identifiant = $identifiant;
+			$this->_libelle = $libelle;
 		}
 
-		public function get_libelle()
+		public function getIdentifiant()
+		{
+			return $this->_identifiant;
+		}
+
+		public function getLibelle()
 		{
 			return $this->_libelle;
 		}
 
-		public function liste_niveaux($con)
+		public function setLibelle($libelle)
 		{
-			$selection = $con->query("SELECT * FROM niveaux");
+			$this->_libelle = $libelle;
+		}
+
+		public function listeNiveaux($con)
+		{
+			$sql = 'SELECT * FROM `v_niveaux`';
+			$selection = $con->query($sql);
 		    foreach ($selection as $niveau) {
-		        $oniveau = new Niveau($niveau['idniv'],$niveau['libniv']);
+		        $this->setAll($niveau['idniv'],$niveau['libniv']);
 ?>
-                <option value="<?php echo $oniveau->get_id() ?>">
-                    <?php echo $oniveau->get_libelle() ?>                                      
+                <option value="<?php echo $this->getIdentifiant() ?>">
+                    <?php echo $this->getLibelle() ?>                                      
                 </option>
 <?php
     		}  
 		}
+			
 	}
 ?>

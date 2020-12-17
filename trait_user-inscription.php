@@ -1,42 +1,42 @@
 <?php
-	include('../include/bdd.inc.php');
-	include('../Classes/Entites/classe_cavalier.php');
-	include('../Classes/Entites/classe_niveau.php');
-	include('../Classes/Associations/classe_obtention.php');
+	include '../include/bdd.inc.php';
+	include '../classes/entites/classe_adresse.php';
+	include '../classes/entites/classe_cavalier.php';
+	include '../classes/entites/classe_login.php';
+	include '../classes/entites/classe_niveau.php';
+	include '../classes/associations/classe_obtention.php';
 
-	$idniv = $_POST['niveau'];
-	$galop = $idniv-1;
-	$libelle = "Galop '$galop'";
-	$oniveau = new Niveau($idniv,$libelle);
-	
-	$nom = $_POST['cavalier'][0];
-	$prenom = $_POST['cavalier'][1];
-	$ddn = $_POST['cavalier'][2];
-	$adresse = $_POST['cavalier'][3];
-	$lieu = $_POST['cavalier'][4];
-	$cp = $_POST['cavalier'][5];
-	$ville = $_POST['cavalier'][6];
-	$telephone = $_POST['cavalier'][7];
-	$email = $_POST['cavalier'][8];
-	$login = $_POST['cavalier'][9];
-	$mdp = $_POST['cavalier'][10];	
-	$ocavalier = new Cavalier('0',$nom,$prenom,$ddn,$adresse,$lieu,$cp,$ville,$telephone,$email,$login,$mdp);
+	$oadresse = new Adresse('NI',$_POST['adresse'][0],$_POST['adresse'][1],$_POST['adresse'][2],$_POST['adresse'][3]);
 
-	$date = $_POST['obtention'];
+	$ologin = new Login('NI','NI');
 
-	$nbdoublons = $ocavalier->verification_doublons($con,$nom,$prenom,$ddn,$adresse,$lieu,$cp,$ville,$telephone,$email,$login,$mdp);
+	$ocavalier = new Cavalier('NI',$_POST['cavalier'][0],$_POST['cavalier'][1],$_POST['cavalier'][2],$oadresse,$_POST['cavalier'][3],$_POST['cavalier'][4],$_POST['cavalier'][5],$ologin);
 
-	if ($nbdoublons == 0) {
-		$ocavalier->nouveau_cavalier($con,$nom,$prenom,$ddn,$adresse,$lieu,$cp,$ville,$telephone,$email,$login,$mdp);
-		$ocavalier->recuperation_id($con);
+	$galop = $_POST['niveau'];
+	$oniveau = new Niveau($galop,'Galop $galop');
 
-		$obtention = new Obtention($ocavalier,$oniveau,$date);
-		$obtention->nouvelle_obtention($con);
+	$obtention = new Obtention($ocavalier,$oniveau,$_POST['obtention']);
+	$obtention->getCavalier()->getAdresse()->verifAdresse($con);
+	$obtention->getCavalier()->verifCavalier($con);
+	$id = $obtention->getCavalier()->getIdentifiant();
 
-		$id = $ocavalier->get_id();
-		header("Location:../../index.php?identifiant='$id'");
-	}
-	else {
-		$ocavalier->erreur();
+	if ($id == 'registre') {
+?>
+<script type="text/javascript">
+	alert('!!! Un cavalier similaire a déjà été enregistré !!!')
+</script>
+<?php
+	} elseif ($id == 'contact') {
+?>
+<script type="text/javascript">
+	alert('!!! Des informations de contact similaires ont déjà été enregistrées !!!')
+</script>
+<?php
+	} else {
+		$obtention->nouvelleObtention($con);
+		$nom = $obtention->getCavalier()->getNom();
+		$prenom = $obtention->getCavalier()->getPrenom();
+		$login = $obtention->getCavalier()->getLogin()->getLibelle();
+		header("Location:../../index.php?identifiant=$id&nom=$nom&prenom=$prenom&statut=$login");
 	}
 ?>
