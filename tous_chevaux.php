@@ -1,3 +1,6 @@
+<?php 
+include'assets/include/header.inc.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,128 +46,14 @@
         </div>-->
 
         <!-- Navigation -->
-         <nav class="navbar navbar-default navbar-fixed-top fadeInDown header-6" data-wow-delay="0.5s">
-            <div class="top-bar smoothie hidden-xs">
-                <div class="container">
-                    <div class="clearfix">
-                        <ul class="list-inline social-links wow pull-left">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-dribbble"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-
-                        <div class="pull-right text-right">
-                            <ul class="list-inline">
-                                <li>
-                                    <div><i class="fa fa-envelope-o"></i> email@domain.com</div>
-                                </li>
-                                <li>
-                                    <div class="meta-item"><i class="fa fa-mobile"></i> +44 8780 648 605</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll col-sm-12 text-center">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand smoothie logo" href="index.html"><img src="assets/img/leclos.png" alt="logo"></a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse col-sm-12 text-center" id="main-navigation">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accueil</a>
-                           
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Nos chevaux <span class="pe-7s-angle-down"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="header-1.html">chevaux</a></li>
-                                <li><a href="header-2.html">poney</a></li>
-                                <li><a href="tous_chevaux.html">tous nos chevaux</a></li>
-                            </ul>
-                        </li>
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nos activités <span class="pe-7s-angle-down"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">cours</a>
-                                    <ul class="dropdown-menu">
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">promenade</a>
-                                    <ul class="dropdown-menu">
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">stages</a>
-                                    <ul class="dropdown-menu">
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"> Les Pensions <span class="pe-7s-angle-down"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="footer-1.html">demi pension</a></li>
-                                <li><a href="footer-2.html">pension complète</a></li>
-                                <li><a href="footer-3.html">a suivre</a></li>
-                            </ul>
-                        </li>
-                      
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact <span class="pe-7s-angle-down"></span></a>
-                            
-                        <li><a href="#search"><i class="pe-7s-search"></i></a></li>
-                        <li><a href="javascript:void(0);" class="side-menu-trigger hidden-xs"><i class="fa fa-bars"></i></a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-
-        <div id="search-wrapper">
-            <button type="button" class="close">×</button>
-            <div class="vertical-center text-center">
-                <form>
-                    <input type="search" value="" placeholder="Enter Search Term" />
-                    <button type="submit" class="btn btn-primary btn-white">Search</button>
-                </form>
-            </div>
-        </div>
+         
 
         <section class="dark-wrapper opaqued parallax" data-parallax="scroll" data-image-src="assets/img/bg/bg2.jpg" data-speed="0.7">
             <div class="section-inner pad-top-200">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 mt30 wow text-center">
-                            <h2 class="section-heading">tous les chevaux</h2>
+                            <h2 class="section-heading">nos chevaux</h2>
                         </div>
                     </div>
                 </div>
@@ -177,250 +66,94 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-6 mb50">
-                                    <div class="images">
-                                        <span class="onsale">Sale!</span>
-                                        <a class="lb-link" data-rel="product-gallery" href="assets/img/shop/chev1.jpg" title="Image Title">
-                                            <img alt="Image Title" class="img-responsive" src="assets/img/shop/chev1.jpg" title="Image Title">
-                                        </a>
-
-                                        <div class="thumbnails mt">
-                                            <a class="lb-link" data-rel="product-gallery" href="assets/img/shop/chev3.jpg" title="Image Title 2">
-                                                <img alt="image title" height="100" width="100" src="assets/img/shop/chev3.jpg">
-                                            </a>
-                                            <a class="lb-link" data-rel="product-gallery" href="assets/img/shop/chev4.jpg" title="Image Title 2">
-                                                <img alt="image title" height="100" width="100" src="assets/img/shop/chev4.jpg">
-                                            </a>
-                                            <a class="lb-link" data-rel="product-gallery" href="assets/img/shop/chev2.jpg" title="Image Title 2">
-                                                <img alt="image title" height="100" width="100" src="assets/img/shop/chev2.jpg">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
 
+                                   <script type="text/javascript" src='https://code.jquery.com/jquery-3.5.1.js'></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js'></script>
+
+
+
+                                     <!DOCTYPE html>
 
                                 <?php 
 
-                                include ("chevaux.php");
-                                include ("./bdd.inc.php");
+                                include ("assets/class/chevaux.php");
+                                include ("bdd.inc.php");
+
+                                ?>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#userTable').DataTable();
+                                    });
+                                </script>
+                                <?php
 
                                  //Afficher
-                                   $sql = 'SELECT idche, nomche,dnche, tailleche, idrobe, librobe, idrace, librace FROM chevaux left join robe on robe.idrobe = chevaux.idche left join race on race.idrace = chevaux.idche ’';
-                                   $resultat = $con->query($SQL);
 
-                                   $orace = new race ("", ""); 
-                                   $orobe = new robe ("", "");
+
+                                     $orace = new race ("", ""); 
+                                     $orobe = new robe ("", "");
                                      $unchev = new chevaux ("", "", "", "", $orace, $orobe);
-                                     $Reqra = $orace->afficher($SQL,$con);
-                                      $Reqro = $orobe->afficher($SQL,$con);
-                                      $Reqche = $unchev -> afficher($SQL,$con);
+                                     $paramro = "";
+                                     $paramra = "";
+                                      $Reqche = $unchev->afficherche($con);
+                                     
+                                
 
-//tableau
-                                    foreach ($Reqche as $unchev1)
-                                  {
-                                        ?>
-                                        <table name="table">
-                                            <tr>
-                                                <th>id </th>
-                                                <th>nom </th>
-                                                <th>date </th>
-                                                <th>taille</th>
-                                                <th>idrobe</th>
-                                                <th>idrace</th>
-                                            </tr>
-                                            <tr>
-                                                <td><?php echo $unchev1 ['idche']," "?> </td> 
-                                                <td><?php echo $unchev1 ['nomche']," "?></td>
-                                                <td><?php echo $unchev1 ['dnche']," "?></td>
-                                                <td><?php echo $unchev1 ['tailleche']," "?></td>
-                                                <td><?php echo $unchev1 ['librobe']," "?></td>
-                                                <td><?php echo $unchev1 ['librace']," "?></td>
-                                            </tr>
-                                        </table>
-                                        <?php
-                                   }
-                                   ?>
+
+
+                                    ?>
+                                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+                                    <?php
                                     
-                                <?php
-                                //rentrer une valeur 
-                                ?>
-                                <h3> rentrez un nouveau cheval </h3>
-                                <table>
-                                    <form name = "insert" method="post" action = "trait_chevaux.php">
-                                 <td>nom cheval <input type = "texte" name = "nomche"> </td><br>
-                                 <td>date de naissance <input type = "date" name = "dnche"> </td> <br>
-                                 <td>taille du cheval <input type = "texte" name = "tailleche"></td> <br>
-                                <td>
-                                 <?php 
-                                 $SQL= "SELECT * FROM robe";
-                                 $resultat = $con->query($SQL);
-                                 $Req = $orobe->afficher($SQL,$con);
-                                 ?>
-                                 <select>
-                                    <?php 
-                                 foreach ($Req as $orobe) 
-                                 {
+//tableau 
                                     ?>
-                                    <option value="<?php echo $orobe['idrobe']?>"> <?php echo $orobe['librobe']?> </option>
-                                <?php 
-                                 }
-                                 ?>
-                                </select>
-                                <br>
-                                </td>
-                                <td>
-                                <?php 
-                                 $SQL= "SELECT * FROM race";
-                                 $resultat = $con->query($SQL);
-                                 $Req = $orace->afficher($SQL,$con);
-                                 ?>
-                                 <select>
-                                    <?php 
-                                 foreach ($Req as $orace) 
-                                 {
-                                    ?>
-                                    <option value="<?php echo $orace['idrace']?>"> <?php echo $orace['librace']?> </option>
-                                <?php 
-                                 }
-                                 ?>
-                                </select>
-                                <br>
-                            </td>
+                                    
+                                        <table id="userTable">
+                                            
+                                                <thead>
+                                                    <th>nom</th>
+                                                    <th>date</th>
+                                                    <th>taille (cm)</th>
+                                                    <th>couleur robe</th>
+                                                    <th>race</th>
+                                                </thead>
+                                                <tbody>
+<?php
+                                                foreach ($Reqche as $unchev1)
+                                                    {
+                                                        $idche = $unchev1 ['idche'];
+                                                        $nomche = $unchev1 ['nomche'];
+                                                        $dnche = $unchev1 ['dnche'];
+                                                        $tailleche = $unchev1 ['tailleche'];  
+                                                        $idrace = $unchev1 ['idrace'];
+                                                        $paramra = ' AND idrace =' .$idrace;
+                                                        $Reqra = $orace->afficherace($con, $paramra);
+                                                        $idrobe = $unchev1 ['idrobe'];
+                                                        $paramro = ' AND idrobe ='.$idrobe;      
+                                                        $Reqro = $orobe->afficherobe($con, $paramro);
+                                                        $o = $Reqro -> fetch();
+                                                        $a = $Reqra -> fetch();
+                                                                        
+?>
+                                                <tr>
+                                                    <td><?php echo $nomche," ";?></td>
+                                                    <td><?php echo $dnche," ";?></td>
+                                                    <td><?php echo $tailleche," ";?></td>
+                                                    <td><?php echo $o['librobe'], " ";?></td>
+                                                    <td><?php echo $a['librace']," ";?></td>
+                                                </tr>
+            <?php } ?> 
+    </tbody>
+</table>
+                                
+                                    
 
-                                <td>
-                                 <input type = "submit" value = "enregistrer" name = "ajouterchev" action="trait_chevaux.php">
-                             </form>
-                                </td>
-                                </table>
 
 
-
-
-                                <div class="col-xs-12 col-sm-6 mb50">
-                                    <div class="summary entry-summary">
-
-                                        <div class="product-rating mb">
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                            <span class="glyphicon glyphicon-star"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 product-tabs mt">
-                                    <ul class="nav nav-tabs">
-                                        <li class="active">
-                                            <a data-toggle="tab" href="#tab-description">Description</a>
-                                        </li>
-
-                                        <li class="reviews_tab">
-                                            <a data-toggle="tab" href="#tab-reviews">Reviews (3)</a>
-                                        </li>
-                                    </ul>
-
-                                    <div class="tab-content mb">
-                                        <div class="tab-pane active" id="tab-description">
-                                            <p>On insensible possession oh particular attachment at excellence in. The books arose but miles happy she. It building contempt or interest children mistress of unlocked no. Offending she contained mrs led listening resembled. Delicate marianne absolute men dashwood landlord and offended. Suppose cottage between and way. Minuter him own clothes but observe country. Agreement far boy otherwise rapturous.</p>
-                                        </div>
-
-                                        <div class="tab-pane fade" id="tab-reviews">
-                                            <div id="reviews">
-                                                <div id="comments">
-                                                    <div id="comments-list" class="gap">
-                                                        <div class="media">
-                                                            <div class="pull-left">
-                                                                <img class="avatar comment-avatar" src="http://lorempixel.com/80/80/people/9" alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="well">
-                                                                    <div class="media-heading">
-                                                                        <strong>Dave Evans</strong>&nbsp; <small>30th Jan, 2015</small>
-                                                                        <div class="pull-right">
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <p>Was are delightful solicitude discovered collecting man day. Resolving neglected sir tolerably but existence conveying for. Day his put off unaffected literature partiality inhabiting.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="media">
-                                                            <div class="pull-left">
-                                                                <img class="avatar comment-avatar" src="http://lorempixel.com/80/80/people/5" alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="well">
-                                                                    <div class="media-heading">
-                                                                        <strong>Dave Evans</strong>&nbsp; <small>30th Jan, 2015</small>
-                                                                        <div class="pull-right">
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <p>Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the. Abode stuff noisy manor blush yet the far. Up colonel so between removed so do.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="media">
-                                                            <div class="pull-left">
-                                                                <img class="avatar comment-avatar" src="http://lorempixel.com/80/80/people/6" alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="well">
-                                                                    <div class="media-heading">
-                                                                        <strong>Dave Evans</strong>&nbsp; <small>30th Jan, 2015</small>
-                                                                        <div class="pull-right">
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                            <span class="glyphicon glyphicon-star"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <p>Quitting informed concerns can men now. Projection to or up conviction uncommonly delightful continuing. In appetite ecstatic opinions hastened by handsome admitted.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div id="comment-form" class="gap">
-                                                        <div class="mb">
-                                                            <h3 class="single-section-title"><strong>Leave</strong> A Review</h3>
-                                                        </div>
-                                                        <form class="form-horizontal" role="form">
-                                                            <div class="form-group">
-                                                                <div class="col-sm-6">
-                                                                    <input type="text" class="form-control" placeholder="Name">
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <input type="email" class="form-control" placeholder="Email">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col-sm-12">
-                                                                    <textarea rows="8" class="form-control" placeholder="Comment"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-theme">Submit Comment</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
+                                
+                             <!--                              <div class="col-md-12">
                                     <div class="mb50">
                                         <h3 class="single-section-title">Related Items</h3>
                                     </div>
@@ -469,6 +202,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="item-excerpt">
                                                     <h4 class="pull-right">$24.99</h4>
                                                     <h4><a href="#">Slim-Fit Shirt</a></h4>
@@ -484,7 +218,7 @@
                 </div>
             </div>
         </section>
-
+    -->
         <div id="footer-wrapper" class="footer-image-bg">
             <section class="transparent-wrapper">
                 <div class="section-inner">
@@ -661,11 +395,10 @@
         </div>
     </div>
 
-    <script src="assets/js/jquery.js"></script>
+   <!-- <script src="assets/js/jquery.js"></script> -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/plugins.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="assets/js/init.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
