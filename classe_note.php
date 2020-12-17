@@ -12,6 +12,11 @@
 			$this->_note = $note;
 		}
 
+		public function setNote($note)
+		{
+			$this->_note = $note;
+		}
+
 		public function getCavalier()
 		{
 			$this->_ocavalier;
