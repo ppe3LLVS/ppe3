@@ -1,14 +1,26 @@
 <?php
 	class Reservation
 	{
-		private $_ocav;
-		private $_oact;
-		private $_datres;
-		function __construct($cav,$act,$datres)
+		private $_ocavalier;
+		private $_oactivite;
+		private $_date;
+		function __construct(Cavalier $cavalier, Activite $activite,$date)
 		{
-			$this->_ocav = $cav->get_idcav();
-			$this->_oact = $act->get_idact();
-			$this->_datres = $datres;
+			$this->_ocavalier = $cavalier;
+			$this->_oactivite = $activite;
+			$this->_date = $date;
 		}
+
+		public function getCavalier()
+		{
+			$this->_ocavalier;
+		}
+
+		public function getActivite()
+		{
+			$this->_oactivite;
+		}
+
+		return $this->_date;
 	}
 ?>

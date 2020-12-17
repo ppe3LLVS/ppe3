@@ -1,12 +1,23 @@
 <?php
 	class Necessite
 	{
-		private $_oniv;
-		private $_oact;
-		function __construct($niv,$act)
+		private $_oniveau;
+		private $_oactivite;
+
+		function __construct(Niveau $niveau, Activite $activite)
 		{
-			$this->_oniv = $niv->get_idniv();
-			$this->_oact = $act->get_idact();
+			$this->_oniveau = $niveau;
+			$this->_oactivite = $activite;
+		}
+
+		public function getNiveau()
+		{
+			$this->_oniveau;
+		}
+
+		public function getActivite()
+		{
+			$this->_oniveau;
 		}
 	}
 ?>
