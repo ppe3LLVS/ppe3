@@ -2,7 +2,7 @@
     session_start();
 
     include 'assets/include/bdd.inc.php';
-    include 'assets/classes/cavalier.enc_adresse-login.php';
+    include 'assets/classes/note.enc_cavalier-cheval.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,10 +68,10 @@
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="user-inscription.php">S'inscrire</a>
+                                    <a href="inscription.php">S'inscrire</a>
                                 </li>
                                 <li>
-                                    <a href="user-connexion.php">Se connecter</a>
+                                    <a href="connexion.php">Se connecter</a>
                                 </li>
                             </ul>
                         </div>
@@ -240,9 +240,9 @@
         <header id="headerwrap" class="backstretched fullheight">
             <div class="container vertical-center">
                 <div class="intro-text vertical-center text-left smoothie">
-                    <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s">Bienvenue </div>
-                    <div class="intro-sub-heading wow fadeIn secondary-font" data-wow-delay="0.4s"><span class="rotate">dans le centre équestre de</span></div>
-                    <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s">Langlade </div>
+                    <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s"> Bienvenue </div>
+                    <div class="intro-sub-heading wow fadeIn secondary-font" data-wow-delay="0.4s"><span class="rotate"> dans le centre équestre de </span></div>
+                    <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s"> Langlade </div>
                 </div>
             </div>
         </header>
@@ -252,20 +252,22 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading"> Tableau </h2>
-                            <h3 class="section-subheading secondary-font"> Des cavaliers inscrits </h3>
+                            <h2 class="section-heading"> Tableaux </h2>
+                            <h3 class="section-subheading secondary-font"> Des notations cavalier-cheval </h3>
                             <br>
-                            <table id="" border="3">
+                            <table id="cavaliers" border="3">
                                 <thead>
                                     <tr>
+                                        <th colspan="2"> Cavalier </th>
+                                        <th colspan="2"> Cheval </th>
+                                        <th rowspan="2"> Note </th>
+                                        <th rowspan="2"> Commentaire </th>
+                                    </tr>
+                                    <tr>
+                                        <th> Identifiant </th>
+                                        <th> Nom / Prénom </th>
                                         <th> Identifiant </th>
                                         <th> Nom </th>
-                                        <th> Prénom </th>
-                                        <th> Date de naissance </th>
-                                        <th> Adresse géographique</th>
-                                        <th> Numéro de téléphone </th>
-                                        <th> Courriel </th>
-                                        <th> Mot de passe </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -273,20 +275,52 @@
     $oadresse = new Adresse('NI','NI','NI','NI','NI');
     $ologin = new Login('NI','NI');
     $ocavalier = new Cavalier('NI','NI','NI','NI',$oadresse,'NI','NI','NI',$ologin);
-    $ocavalier->tableCavalier($con);
+    $orobe = new Robe('NI','NI');
+    $orace = new Race('NI','NI');
+    $ocheval = new Cheval('NI','NI','NI','NI',$orace,$orobe);
+    $onote = new Note($ocavalier,$ocheval,'NI', 'NI');
+    $onote->tableNote($con);
 ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th> Identifiant </th>
+                                        <th> Nom / Prénom </th>
+                                        <th> Identifiant </th>
                                         <th> Nom </th>
-                                        <th> Prénom </th>
-                                        <th> Date de naissance </th>
-                                        <th> Adresse géographique</th>
-                                        <th> Numéro de téléphone </th>
-                                        <th> Courriel </th>
-                                        <th> Mot de passe </th>
+                                        <th rowspan="2"> Note </th>
+                                        <th rowspan="2"> Commentaire </th>
                                     </tr>
+                                    <tr>
+                                        <th colspan="2"> Cavalier </th>
+                                        <th colspan="2"> Cheval </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <br>
+                            <table border="3">
+                                <thead>
+                                    <th> Identifiant </th>
+                                    <th> Nom </th>
+                                    <th> Etendue maximun des notes </th>
+                                    <th> Nombre de points </th>
+                                    <th> Nombre de notes </th>
+                                    <th> Moyenne / pourcentage réussite </th>
+                                    <th> Commentaire </th>
+                                </thead>
+                                <tbody>
+<?php
+    $onote->reussiteCheval($con);
+?>
+                                </tbody>
+                                <tfoot>
+                                    <th> Identifiant </th>
+                                    <th> Nom </th>
+                                    <th> Etendue maximun des notes </th>
+                                    <th> Nombre de points </th>
+                                    <th> Nombre de notes </th>
+                                    <th> Moyenne / pourcentage réussite </th>
+                                    <th> Commentaire </th>
                                 </tfoot>
                             </table>
                         </div>
