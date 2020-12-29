@@ -101,6 +101,7 @@
 					$identifiant = 'registre';
 				} 
 				while ($nbl = $selection->fetch() );
+
 			} else {
 				$sql = "SELECT `idca` FROM `v_cavaliers` WHERE `mailca`='$mail' AND `mdpca`='$mdp'";
 				$selection = $con->query($sql);
@@ -110,6 +111,7 @@
 						$identifiant = 'contact';
 					}
 					while ($nbl = $selection->fetch() );
+
 				} else {
 					$sql = "INSERT INTO `cavaliers`(`nomca`,`preca`,`dnca`,`adrca`,`telca`,`mailca`,`mdpca`,`loginca`) VALUES ('$nom','$prenom','$ddn','$adresse','$numtel','$mail','$mdp','1')";
 					$insertion = $con->query($sql);
@@ -136,8 +138,8 @@
 						$this->getLogin()->setAll($logid,$loglib);
 					}
 				}
-				$this->_identifiant = $identifiant;
-			}	
+			}
+			$this->_identifiant = $identifiant;
 		}
 
 		public function tableCavalier($con)
@@ -175,18 +177,21 @@
 		{
 			$mail = $this->getMail();
 			$mdp = $this->getMDP();
-			$sql = "SELECT `idca`, `nomca`, `preca` FROM `v_cavaliers` WHERE `mailca`='$mail' AND `mdpca`='$mdp'";
+			$sql = "SELECT `idca`, `nomca`, `preca`, `lib_login` FROM `v_cavaliers`, `v_login` WHERE `v_cavaliers`.`loginca`=`v_login`.`id_login` AND `mailca`='$mail' AND `mdpca`='$mdp'";
 			$selection = $con->query($sql);
 			if ($nbl = $selection->fetch() ) {
 				do {
 					$identifiant = $nbl['idca'];
 					$nom = $nbl['nomca'];
 					$prenom = $nbl['preca'];
+					$login = $nbl['lib_login'];
 				}
 				while ($nbl = $selection->fetch() );
+
 				$this->_identifiant = $identifiant;
 				$this->_nom = $nom;
 				$this->_prenom = $prenom;
+				$this->getLogin()->setAll('NI', $login);
 			} else {
 				$this->_identifiant = 'introuvable';
 			}
@@ -208,12 +213,12 @@
 				$mdp = $this->getMDP();
 				$sql = "UPDATE `cavaliers` SET `mdpca`='$mdp' WHERE `idca`='$identifiant'";
 				$modif = $con->query($sql);
-				header("Location:../../index.php?identifiant=$identifiant&nom=$nom&prenom=$prenom");
+				header("Location:../../connexion.php");
 			} 
 			else {
 ?>
 <script type="text/javascript">
-	alert('!!!  !!!')
+	alert('!!! Résultat introuvable !!!')
 </script>
 <?php
 			}

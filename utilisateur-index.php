@@ -66,10 +66,10 @@
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="user-inscription.php">S'inscrire</a>
+                                    <a href="inscription.php">S'inscrire</a>
                                 </li>
                                 <li>
-                                    <a href="user-connexion.html">Se connecter</a>
+                                    <a href="connexion.php">Se connecter</a>
                                 </li>
                             </ul>
                         </div>
@@ -250,43 +250,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading">Charger </h2>
-                            <h3 class="section-subheading secondary-font">Un nouveau mot de passe </h3>
+                            <h2 class="section-heading"></h2>
+                            <h3 class="section-subheading secondary-font"></h3>
                             <br>
-                            <form method="POST" action="assets/trait_formulaire/nouveau_mdp°2.php">
-                            	<div>
-                            		<label>
-                            			<b> Votre nom : </b>
-                            		</label>
-                            		<input type="text" name="cavalier[]">
-                            	</div>
-                            	<br>
-                            	<div>
-                            		<label>
-                            			<b> Votre prénom : </b>
-                            		</label>
-                            		<input type="text" name="cavalier[]">
-                            	</div>
-                            	<br>
-                            	<div>
-                            		<label>
-                            			<b> Votre adresse électronique : </b>
-                            		</label>
-                            		<input type="text" name="cavalier[]" value="<?php echo $_GET['courriel'] ?>">
-                            	</div>
-                            	<br>
-                            	<div>
-                            		<label>
-                            			<b> Votre nouveau mot de passe : </b>
-                            		</label>
-                            		<input type="password" name="cavalier[]">
-                            	</div>
-                            	<br>
-                            	<div>
-                            		<input type="reset" value="EFFACER">
-                            		<input type="submit" value="VALIDER">
-                            	</div>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>

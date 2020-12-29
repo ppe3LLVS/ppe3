@@ -72,7 +72,7 @@
 		public function coorDonnees($con)
 		{
 			$id = $this->getCavalier()->getIdentifiant();
-			$sql = "SELECT * FROM `v_adresses`, `v_cavaliers` WHERE `v_cavaliers`.`idca`='$id'";
+			$sql = "SELECT * FROM `v_adresses`, `v_cavaliers` WHERE `idca`='$id'";
 			$selection = $con->query($sql);
 			foreach ($selection as $cavalier) {
 				$this->getCavalier()->getAdresse()->setAll($cavalier['id_adr'],$cavalier['numero_adr'],$cavalier['lieu_adr'],$cavalier['cp_adr'],$cavalier['ville_adr']);
