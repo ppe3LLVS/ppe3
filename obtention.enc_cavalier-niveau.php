@@ -69,21 +69,10 @@
 		    }
 		}
 
-		public function coorDonnees($con)
-		{
-			$id = $this->getCavalier()->getIdentifiant();
-			$sql = "SELECT * FROM `v_adresses`, `v_cavaliers` WHERE `idca`='$id'";
-			$selection = $con->query($sql);
-			foreach ($selection as $cavalier) {
-				$this->getCavalier()->getAdresse()->setAll($cavalier['id_adr'],$cavalier['numero_adr'],$cavalier['lieu_adr'],$cavalier['cp_adr'],$cavalier['ville_adr']);
-		        $this->getCavalier()->setAll($cavalier['idca'],$cavalier['nomca'],$cavalier['preca'],$cavalier['dnca'],$cavalier['telca'],$cavalier['mailca'],$cavalier['mdpca']);
-			}
-		}
-
 		public function niveauxValides($con)
 		{
-			$id = $this->getCavalier()->getIdentifiant();
-			$sql = "SELECT * FROM `v_niveaux`, `v_obtenir` RIGHT JOIN `v_cavaliers` ON `v_obtenir`.`idca`=`v_cavaliers`.`idca` WHERE `v_niveaux`.`idniv`=`v_obtenir`.`idniv` AND `v_cavaliers`.`idca`='$id'";
+			$id_cavalier = $this->getCavalier()->getIdentifiant();
+			$sql = "SELECT `v_niveaux`.`idniv`, `libniv`, `date_obtention` FROM `v_niveaux`, `v_obtenir` RIGHT JOIN `v_cavaliers` ON `v_obtenir`.`idca`=`v_cavaliers`.`idca` WHERE `v_niveaux`.`idniv`=`v_obtenir`.`idniv` AND `v_cavaliers`.`idca`='$id_cavalier'";
 	        $selection = $con->query($sql);
 	        foreach ($selection as $niveau) {
 	         	$this->getNiveau()->setAll($niveau['idniv'],$niveau['libniv']);

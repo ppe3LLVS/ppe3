@@ -9,17 +9,17 @@
 	switch ($_POST['action']) {
 		case 'VALIDER':
 			$_SESSION['cavalier']->rechercheCavalier($con);
-			$_SESSION['id_cavalier'] = $_SESSION['cavalier']->getIdentifiant();
-			if ($_SESSION['id_cavalier'] != 'introuvable') {
+			$id_cavalier = $_SESSION['cavalier']->getIdentifiant();
+			if ($id_cavalier != 'introuvable') {
 				$nom = $_SESSION['cavalier']->getNom();
 				$prenom = $_SESSION['cavalier']->getPrenom();
 				$login = $_SESSION['cavalier']->getLogin()->getLibelle();
 				
 				if ($login != 'Administrateur') {
-					header('Location:../../utilisateur-index.php?identifiant='.$_SESSION['id_cavalier'].'&nom='.$nom.'&prenom='.$prenom);
+					header('Location:../../utilisateur-index.php?identifiant='.$id_cavalier.'&nom='.$nom.'&prenom='.$prenom);
 
 				} else {
-					header('Location:../../administrateur-index.php?identifiant='.$_SESSION['id_cavalier'].'&nom='.$nom.'&prenom='.$prenom);
+					header('Location:../../administrateur-index.php?identifiant='.$id_cavalier.'&nom='.$nom.'&prenom='.$prenom);
 
 				}
 			} else {

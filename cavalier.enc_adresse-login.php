@@ -179,6 +179,7 @@
 			$mdp = $this->getMDP();
 			$sql = "SELECT `idca`, `nomca`, `preca`, `lib_login` FROM `v_cavaliers`, `v_login` WHERE `v_cavaliers`.`loginca`=`v_login`.`id_login` AND `mailca`='$mail' AND `mdpca`='$mdp'";
 			$selection = $con->query($sql);
+			
 			if ($nbl = $selection->fetch() ) {
 				do {
 					$identifiant = $nbl['idca'];
@@ -238,6 +239,17 @@
 			$mdp = $this->getMDP();
 			$sql = "UPDATE `cavaliers`, `adresses` SET `nomca`='$nom', `preca`='$prenom', `numero_adr`='$numero', `lieu_adr`='$lieu', `cp_adr`='$cp', `ville_adr`='$ville', `telca`='$numtel', `mailca`='$mail', `mdpca`='$mdp' WHERE idca='$id' AND `cavaliers`.`adrca`=`adresses`.`id_adr`";
 			$modif = $con->query($sql);
+		}
+
+		public function coordination($con)
+		{
+			$id_cavalier = $this->getIdentifiant();
+			$sql = "SELECT `v_cavaliers`.`idca`, `nomca`, `preca`, `dnca`, `id_adr`, `numero_adr`, `lieu_adr`, `cp_adr`, `ville_adr`, `telca`, `mailca`, `mdpca` FROM `v_cavaliers`, `v_adresses` WHERE `v_cavaliers`.`adrca`=`v_adresses`.`id_adr` AND `v_cavaliers`.`idca`='$id_cavalier'";
+			$selection = $con->query($sql);
+			foreach ($selection as $cavalier) {
+				$this->setAll($cavalier['idca'],$cavalier['nomca'],$cavalier['preca'],$cavalier['dnca'],$cavalier['telca'],$cavalier['mailca'],$cavalier['mdpca']);
+				$this->getAdresse()->setAll($cavalier['id_adr'],$cavalier['numero_adr'],$cavalier['lieu_adr'],$cavalier['cp_adr'],$cavalier['ville_adr']);
+			}
 		}
 	}
 ?>

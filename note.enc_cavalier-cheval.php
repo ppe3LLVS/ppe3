@@ -1,6 +1,5 @@
 <?php
-	include 'cavalier.enc_adresse-login.php';
-	include 'cheval.enc_race-robe.php';
+	include 'cheval.enc_robe-race.php';
 
 	class Note
 	{
