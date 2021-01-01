@@ -1,8 +1,13 @@
 <?php
+    include 'assets/include/bdd.inc.php';
+    include 'assets/classes/obtention.enc_cavalier-niveau.php';
+
     session_start();
+
+	$_SESSION['obtention']->getCavalier()->coordination($con);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -62,14 +67,13 @@
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                             </li>
                         </ul>
-
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="inscription.php">S'inscrire</a>
+                                    <a href="">S'inscrire</a>
                                 </li>
                                 <li>
-                                    <a href="connexion.php">Se connecter</a>
+                                    Se connecter
                                 </li>
                             </ul>
                         </div>
@@ -97,7 +101,7 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home - Agency</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="administrateur-ajout_obtention.php">Menu principal</a></li>
+                                        <li><a href="index.html">Menu principal</a></li>
                                         <li><a href="index-agency-2.html">Agency - Layout 2</a></li>
                                         <li><a href="index-agency-3.html">Agency - Layout 3</a></li>
                                     </ul>
@@ -250,10 +254,80 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading"></h2>
-                            <h3 class="section-subheading secondary-font"></h3>
+                            <h2 class="section-heading">Vérifier </h2>
+                            <h3 class="section-subheading secondary-font">Votre compte.</h3>
                             <br>
-                            
+                            <form method="POST" action="assets/trait_formulaire/trait_compte.php?">
+                            	<table border="3">
+                            		<tr>
+                            			<th colspan="2"> Vos informations </th>
+                            		</tr>
+                            		<tr>
+                            			<th> Nom </th>
+                            			<td>
+                            				<?php echo $_SESSION['obtention']->getCavalier()->getNom() ?>
+                            			</td>
+                            		</tr>
+                            		<tr> 
+                            			<th> Prénom </th>
+                            			<td>
+                                    		<?php echo $_SESSION['obtention']->getCavalier()->getPrenom() ?>
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Date de naissance </th>
+                            			<td>
+                                    		<?php echo $_SESSION['obtention']->getCavalier()->getDDN() ?>
+                                    	</td>
+                                	</tr>
+                                	<tr> 
+                            			<th> Adresse géographique </th>
+                            			<td>
+                            				<div>
+                            					<?php echo $_SESSION['obtention']->getCavalier()->getAdresse()->getNumero() ?>
+                                                <br>
+                            					<?php echo $_SESSION['obtention']->getCavalier()->getAdresse()->getLieu() ?>
+                                                <br>
+                                    			<?php echo $_SESSION['obtention']->getCavalier()->getAdresse()->getCP() ?>
+                                                <br>
+                                    			<?php echo $_SESSION['obtention']->getCavalier()->getAdresse()->getVille() ?>
+                                    		</div>
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Numéro de téléphone </th>
+                            			<td>
+                                    		<?php echo $_SESSION['obtention']->getCavalier()->getNumtel() ?>
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Adresse électronique </th>
+                            			<td>
+                                    		<?php echo $_SESSION['obtention']->getCavalier()->getMail() ?>
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Mot de passe </th>
+                            			<td>
+                                    		<?php echo $_SESSION['obtention']->getCavalier()->getMDP() ?>
+                                    	</td>
+                                	</tr>
+	                                <tr> 
+                            			<th> Niveaux validés <br> Date de validation</th>
+                            			<td>
+                                            <ol>
+                                                <?php $_SESSION['obtention']->niveauxValides($con) ?>
+                                            </ol>
+                                    	</td>
+                                    </tr>
+                                    <tr>
+                                    	<td colspan="2">
+	                                    	<input type="reset" value="EFFACER">
+	                                    	<input type="submit" value="VALIDER">
+	                                    </td>
+                                    </tr>
+                            	</table>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <?php
     include 'assets/include/bdd.inc.php';
-    include 'assets/classes/niveau.php';
-    
+    include 'assets/classes/obtention.enc_cavalier-niveau.php';
+
     session_start();
 ?>
 <!DOCTYPE html>
@@ -69,10 +69,10 @@
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    S'inscrire
+                                    <a href="user-inscription.php">S'inscrire</a>
                                 </li>
                                 <li>
-                                    <a href="connexion.php">Se connecter</a>
+                                    <a href="user-connexion.php">Se connecter</a>
                                 </li>
                             </ul>
                         </div>
@@ -253,106 +253,35 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading">S'inscrire</h2>
-                            <h3 class="section-subheading secondary-font">Pour les nouveaux cavaliers.</h3>
+                            <h2 class="section-heading"> Tableau </h2>
+                            <h3 class="section-subheading secondary-font"> Des affectations cavalier-niveau </h3>
                             <br>
-                            <form method="POST" action="assets/trait_formulaire/inscription°2.php">
-                                <div>
-                                    <label>
-                                        <b> Nom : </b>
-                                    </label>
-                                    <input type="text" name="cavalier[]" value="Gouygou-Barbiéro" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Prénom : </b>
-                                    </label>
-                                    <input type="text" name="cavalier[]" value="Valentin" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Date de naissance : </b>
-                                    </label>
-                                    <input type="date" name="cavalier[]" value="2001-07-26" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Adresse géographique : </b>
-                                    </label>
-                                    <ul>
-                                        <li>
-                                            <label>
-                                                <b> Numéro : </b>
-                                            </label>
-                                            <input type="text" name="adresse[]" value="18" required="required">
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <b> Lieu : </b>
-                                            </label>
-                                            <input type="text" name="adresse[]" value="Rue du Docteur Laubie" required="required">
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <b> Code postal : </b>
-                                            </label>
-                                            <input type="text" name="adresse[]" value="19270" required="required">
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <b> Ville : </b>
-                                            </label>
-                                            <input type="text" name="adresse[]" value="Donzenac" required="required">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <label>
-                                        <b> Numéro de téléphone : </b>
-                                    </label>
-                                    <input type="text" name="cavalier[]" value="06 88 85 62 04" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Adresse mail : </b>
-                                    </label>
-                                    <input type="text" name="cavalier[]" value="valentingbarbiero@clos-langlade.fr" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label> <b>
-                                            Mot de passe : </b>
-                                    </label>
-                                    <input type="password" name="cavalier[]" value="La_Valocherie" required="required">
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Votre niveau : </b>
-                                    </label>
-                                    <select name="niveau">
+                            <table border="3" align="vertical-center">
+                                <thead>
+                                    <tr>
+                                        <th> Cavalier </th>
+                                        <th> Niveau </th>
+                                        <th> Date d'obtention </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 <?php
-    $_SESSION['niveau']->listeNiveaux($con);
+    $oadresse = new Adresse(0,0,0,0,0);
+    $ologin = new Login(0,0);
+    $ocavalier = new Cavalier(0,0,0,0,$oadresse,0,0,0,$ologin);
+    $oniveau = new Niveau(0,0);
+    $obtention = new Obtention($ocavalier,$oniveau,0);
+    $obtention->tableObtention($con);
 ?>
-                                    </select>
-                                </div>
-                                <br>
-                                <div>
-                                    <label>
-                                        <b> Date d'obtention : </b>
-                                    </label>
-                                    <input type="date" name="obtention">
-                                </div>
-                                <br>
-                                <div>
-                                    <input type="reset" value="EFFACER">
-                                    <input type="submit" value="VALIDER">
-                                </div>
-                            </form>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th> Cavalier </th>
+                                        <th> Niveau </th>
+                                        <th> Date d'obtention </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>

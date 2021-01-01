@@ -97,7 +97,7 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home - Agency</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="index.html">Menu principal</a></li>
+                                        <li><a href="utilisateur-compte.php">Mon compte</a></li>
                                         <li><a href="index-agency-2.html">Agency - Layout 2</a></li>
                                         <li><a href="index-agency-3.html">Agency - Layout 3</a></li>
                                     </ul>

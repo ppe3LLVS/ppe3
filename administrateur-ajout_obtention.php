@@ -1,4 +1,7 @@
 <?php
+    include 'assets/include/bdd.inc.php';
+    include 'assets/classes/niveau.php';
+
     session_start();
 ?>
 <!DOCTYPE html>
@@ -31,6 +34,8 @@
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/pe-icons.css" rel="stylesheet">
 
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="ajout-obtention_script.js"></script>
 </head>
 
 <body id="page-top" class="index">
@@ -97,7 +102,7 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home - Agency</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="administrateur-ajout_obtention.php">Menu principal</a></li>
+                                        <li><a href="utilisateur-compte.php">Mon compte</a></li>
                                         <li><a href="index-agency-2.html">Agency - Layout 2</a></li>
                                         <li><a href="index-agency-3.html">Agency - Layout 3</a></li>
                                     </ul>
@@ -253,7 +258,37 @@
                             <h2 class="section-heading"></h2>
                             <h3 class="section-subheading secondary-font"></h3>
                             <br>
-                            
+                            <form action="assets/trait_formulaire/administrateur-ajout_obtention°2.php" method="POST">
+                                <div>
+                                    <label>
+                                        <b> Cavalier : </b>
+                                    </label>
+                                    <input type="number" name="cavalier" id="cavalier" onkeyup="autocompletion()">
+                                    <ul id="liste_cavaliers"></ul>
+                                    <input type="text" id="nom">
+                                    <input type="text" id="prenom">
+                                </div>
+                                <div>
+                                    <label>
+                                        <b> Niveau : </b>
+                                    </label>
+                                    <select name="niveau">
+<?php
+    $_SESSION['niveau']->listeNiveaux($con);
+?>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>
+                                        <b> Date d'obtention : </b>
+                                    </label>
+                                    <input type="date" name="obtention">
+                                </div>
+                                <div>
+                                    <input type="reset" value="EFFACER">
+                                    <input type="submit" value="VALIDER">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

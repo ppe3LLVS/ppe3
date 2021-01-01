@@ -1,4 +1,7 @@
 <?php
+    include 'assets/include/bdd.inc.php';
+    include 'assets/classes/cavalier.enc_adresse-login.php';
+
     session_start();
 ?>
 <!DOCTYPE html>
@@ -30,7 +33,6 @@
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/pe-icons.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top" class="index">
@@ -66,10 +68,10 @@
                         <div class="pull-right text-right">
                             <ul class="list-inline">
                                 <li>
-                                    <a href="inscription.php">S'inscrire</a>
+                                    <a href="user-inscription.php">S'inscrire</a>
                                 </li>
                                 <li>
-                                    <a href="connexion.php">Se connecter</a>
+                                    <a href="user-connexion.php">Se connecter</a>
                                 </li>
                             </ul>
                         </div>
@@ -97,7 +99,7 @@
                                 <li class="dropdown-submenu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home - Agency</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="administrateur-ajout_obtention.php">Menu principal</a></li>
+                                        <li><a href="index.html">Menu principal</a></li>
                                         <li><a href="index-agency-2.html">Agency - Layout 2</a></li>
                                         <li><a href="index-agency-3.html">Agency - Layout 3</a></li>
                                     </ul>
@@ -250,10 +252,43 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mb100 wow">
-                            <h2 class="section-heading"></h2>
-                            <h3 class="section-subheading secondary-font"></h3>
+                            <h2 class="section-heading"> Tableau </h2>
+                            <h3 class="section-subheading secondary-font"> Des cavaliers inscrits </h3>
                             <br>
-                            
+                            <table id="" border="3">
+                                <thead>
+                                    <tr>
+                                        <th> Identifiant </th>
+                                        <th> Nom </th>
+                                        <th> Prénom </th>
+                                        <th> Date de naissance </th>
+                                        <th> Adresse géographique</th>
+                                        <th> Numéro de téléphone </th>
+                                        <th> Courriel </th>
+                                        <th> Mot de passe </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+<?php
+    $oadresse = new Adresse('NI','NI','NI','NI','NI');
+    $ologin = new Login('NI','NI');
+    $ocavalier = new Cavalier('NI','NI','NI','NI',$oadresse,'NI','NI','NI',$ologin);
+    $ocavalier->tableCavalier($con);
+?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th> Identifiant </th>
+                                        <th> Nom </th>
+                                        <th> Prénom </th>
+                                        <th> Date de naissance </th>
+                                        <th> Adresse géographique</th>
+                                        <th> Numéro de téléphone </th>
+                                        <th> Courriel </th>
+                                        <th> Mot de passe </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -357,7 +392,7 @@
 
     </div>
 
-    <script src="assets/js/jquery.js"></script>
+    <!--<script src="assets/js/jquery.js"></script>-->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/plugins.js"></script>
 
