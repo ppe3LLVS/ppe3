@@ -44,67 +44,31 @@
 
 		public function tableNote($con)
 		{
-			$sql = 'SELECT `v_cavaliers`.`idca`, `nomca`, `preca`, COUNT(`idche`) AS `nbn` FROM `v_cavaliers` RIGHT JOIN `v_noter` ON `v_cavaliers`.`idca`=`v_noter`.`idca` GROUP BY `v_noter`.`idca`';
+			$sql = 'SELECT `v_chevaux`.`idche`, `nomche`, COUNT(`idca`) AS `nbc`, AVG(`note`) AS `moy` FROM `v_chevaux` RIGHT JOIN `v_noter` ON `v_chevaux`.`idche`=`v_noter`.`idche` GROUP BY `v_chevaux`.`idche`';
 			$selection = $con->query($sql);
-			foreach ($selection as $cavalier) {
-				$this->getCavalier()->setAll($cavalier['idca'],$cavalier['nomca'],$cavalier['preca'],0,0,0,0);
+			foreach ($selection as $cheval) {
+				$nbc = $cheval['nbc'];
+				$this->getCheval()->setAll($cheval['idche'], $cheval['nomche'], 'NI', 'NI');
 ?>
 				<tr>
-					<th rowspan="<?php echo $cavalier['nbn'] ?>"><?php echo $this->getCavalier()->getIdentifiant() ?></th>
-					<td rowspan="<?php echo $cavalier['nbn'] ?>"><?php echo $this->getCavalier()->getNom(),' ', $this->getCavalier()->getPrenom() ?></td>
+					<th rowspan="<?php echo $nbc ?>"><?php echo $this->getCheval()->getIdentifiant() ?></th>
+					<td rowspan="<?php echo $nbc ?>"><?php echo $this->getCheval()->getNom() ?></td>
+					<td rowspan="<?php echo $nbc ?>"><?php echo $cheval['moy'] ?></td>
 <?php
-				$identifiant = $cavalier['idca'];
-				$sql = "SELECT `v_chevaux`.`idche`, `nomche`, `note`, `commentaire` FROM `v_noter`, `v_chevaux` WHERE `v_noter`.`idche`=`v_chevaux`.`idche` AND `v_noter`.`idca`='$identifiant'";
-				$selection2 = $con->query($sql);
+				$idche = $cheval['idche'];
+				$sql2 = "SELECT `v_cavaliers`.`idca`, `nomca`, `preca`, `note`, `commentaire` FROM `v_noter` RIGHT JOIN `v_cavaliers` ON `v_noter`.`idca`=`v_cavaliers`.`idca` WHERE `idche`='$idche'";
+				$selection2 = $con->query($sql2);
 				foreach ($selection2 as $note) {
-					$this->getCheval()->setAll($note['idche'], $note['nomche'], 'NI', 'NI');
+					$this->getCavalier()->setAll($note['idca'], $note['nomca'], $note['preca'], 'NI', 'NI', 'NI', 'NI');
 					$this->setAll($note['note'], $note['commentaire']);
 ?>
-					<th><?php echo $this->getCheval()->getIdentifiant() ?></th>
-					<td><?php echo $this->getCheval()->getNom() ?></td>
+					<th><?php echo $this->getCavalier()->getIdentifiant() ?></th>
+					<td><?php echo $this->getCavalier()->getNom().' '.$this->getCavalier()->getPrenom() ?></td>
 					<td><?php echo $this->getNote() ?></td>
 					<td><?php echo $this->getCommentaire() ?></td>
 				</tr>
 <?php
 				}
-			}
-		}
-
-		public function reussiteCheval($con)
-		{
-			$sql = 'SELECT `v_chevaux`.`idche`, `nomche`, SUM(`note`) AS `ttn`, COUNT(`note`) AS `nbn` FROM `v_noter`, `v_chevaux` WHERE `v_noter`.`idche`=`v_chevaux`.`idche` GROUP BY `v_chevaux`.`idche`';
-			$selection = $con->query($sql);
-			foreach ($selection as $cheval) {
-				$this->getCheval()->setAll($cheval['idche'], $cheval['nomche'], 'NI', 'NI');
-?>
-				<tr>
-					<th><?php echo $this->getCheval()->getIdentifiant() ?></th>
-					<td><?php echo $this->getCheval()->getNom() ?></td>
-					<td> De 0 à 5 </td>
-					<td><?php echo $ttn = $cheval['ttn'] ?></td>
-					<td><?php echo $nbn = $cheval['nbn'] ?></td>
-<?php
-				$moy = $ttn/$nbn;
-				$pm = $moy*20;
-?>
-					<td><?php echo number_format($moy, 3), ' (=', number_format($pm, 3), '%)'  ?></td>
-					<td>
-<?php
-				if ($moy >= 4) {
-					echo 'Très satisfaisant';
-				} elseif ($moy >= 3) {
-					echo 'Satisfaisant';
-				} elseif ($moy >= 2) {
-					echo 'Correct';
-				} elseif ($moy >= 1) {
-					echo 'Décevant';
-				} else {
-					echo 'À revoir';
-				}
-?>
-					</td>
-				</tr>
-<?php
 			}
 		}
 	}

@@ -52,7 +52,8 @@
 		    	$this->getCavalier()->setAll($ligne['idca'],$ligne['nomca'],$ligne['preca'],0,0,0,0);
 ?>
 		    	<tr>
-                    <td rowspan="<?php echo $ligne['nbn'] ?>"><?php echo $this->getCavalier()->getNom() ?> <?php echo $this->getCavalier()->getPrenom() ?></td>
+		    		<th rowspan="<?php echo $ligne['nbn'] ?>"><?php echo $this->getCavalier()->getIdentifiant() ?></th>
+                    <td rowspan="<?php echo $ligne['nbn'] ?>"><?php echo $this->getCavalier()->getNom().' '.$this->getCavalier()->getPrenom() ?></td>
 <?php
 				$identifiant = $ligne['idca'];
 				$sql = "SELECT `v_niveaux`.`idniv`, `libniv`, `date_obtention` FROM `v_niveaux` RIGHT JOIN `v_obtenir` ON `v_niveaux`.`idniv`=`v_obtenir`.`idniv` WHERE `idca`='$identifiant'";
@@ -61,6 +62,7 @@
 		    		$this->getNiveau()->setAll($ligneint['idniv'],$ligneint['libniv']);
 		        	$this->setDate($ligneint['date_obtention']);
 ?>
+					<th><?php echo $this->getNiveau()->getIdentifiant() ?></th>
                     <td><?php echo $this->getNiveau()->getLibelle() ?></td>
                     <td><?php echo $this->getDate() ?></td>
                 </tr>
